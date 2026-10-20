@@ -78,7 +78,7 @@ cd backend && mvn test                    # service logic, controller, JSON pars
 cd e2e && npm install && npx playwright install chromium && npx playwright test
 ```
 
-- **Backend:** 13 tests covering the disruption lifecycle (create, dedupe, resolve, API failure),
+- **Backend:** 14 tests covering the disruption lifecycle (create, dedupe, resolve, API failure),
   per-line severity, REST endpoints and parsing of the real LTA response shape.
 - **End-to-end:** 7 Playwright tests drive the dashboard in a real browser with the API mocked
   (banner states, line filter, resolved toggle, refresh button, error handling).
