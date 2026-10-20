@@ -6,8 +6,10 @@ Read this twice. Then open the code and trace one request from start to finish.
 
 1. `cd backend && mvn test` — this must pass. **I could not run the Java code where I built it**
    (the workspace blocked Maven Central). If anything fails, paste the error to me and we fix it.
-2. `docker compose up --build`, open http://localhost:3000, and watch it for 3 minutes.
-   You will see 1 disruption, then 2, then "all normal". That is the mock data cycling.
+2. Get your free LTA DataMall AccountKey (see README), put it in `.env`, then
+   `docker compose up --build` and open http://localhost:3000.
+   Most of the time the real API says "all normal", so the dashboard will look empty. That is correct.
+   For a demo with visible disruptions, run once with `LTA_MOCK_ENABLED=true`.
 3. `cd e2e && npm install && npx playwright install chromium && npx playwright test`.
    7 tests should pass.
 4. Push to GitHub so the CI badge and workflow exist. Check the first CI run goes green.

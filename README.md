@@ -26,28 +26,36 @@ LTA DataMall API  ->  Spring Boot backend  ->  H2 database
 
 ## Run it
 
-**With Docker (easiest):**
+**1. Get an LTA DataMall AccountKey** (free): register at https://datamall.lta.gov.sg, request API access, and
+copy the key from the confirmation email.
+
+**2. Check the key works** (should print JSON with a `value` object):
 
 ```bash
-docker compose up --build
-# dashboard: http://localhost:3000     API: http://localhost:8080/api/status
+curl -H "AccountKey: YOUR_KEY" -H "accept: application/json" \
+  https://datamall2.mytransport.sg/ltaodataservice/TrainServiceAlerts
 ```
 
-By default the app uses built-in sample data that cycles through
-"one disruption", "two disruptions", "all normal", so you can watch the dashboard change.
-
-**With real LTA data:** get a free AccountKey from LTA DataMall, then:
+**3. With Docker (easiest):**
 
 ```bash
-LTA_MOCK_ENABLED=false LTA_ACCOUNT_KEY=your-key docker compose up --build
+cp .env.example .env        # then paste your key into .env
+docker compose up --build
+# dashboard: http://localhost:3000     API: http://localhost:8080/api/status
 ```
 
 **Without Docker (development):**
 
 ```bash
-cd backend  && mvn spring-boot:run      # http://localhost:8080
-cd frontend && npm install && npm run dev   # http://localhost:5173 (proxies /api to :8080)
+cd backend  && LTA_ACCOUNT_KEY=your-key mvn spring-boot:run      # http://localhost:8080
+cd frontend && npm install && npm run dev                        # http://localhost:5173 (proxies /api to :8080)
 ```
+
+**Offline demo with no key:** set `LTA_MOCK_ENABLED=true`. The app then uses built-in sample data that cycles
+through "one disruption", "two disruptions", "all normal".
+
+When there are no disruptions, the real API reports normal service and the dashboard shows
+"All lines running normally". That is expected most of the time.
 
 ## API
 

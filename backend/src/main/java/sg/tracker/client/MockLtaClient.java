@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 1) one major disruption, 2) two disruptions, 3) everything back to normal.
  */
 @Component
-@ConditionalOnProperty(name = "lta.mock-enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "lta.mock-enabled", havingValue = "true")
 public class MockLtaClient implements LtaClient {
 
     private final AtomicInteger calls = new AtomicInteger();

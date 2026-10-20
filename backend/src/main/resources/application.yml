@@ -18,9 +18,9 @@ management:
         include: health,info
 
 lta:
-  # When true (default) the app uses built-in sample data, so it runs with no API key.
-  # Set LTA_MOCK_ENABLED=false and LTA_ACCOUNT_KEY=<your key> to call the real LTA DataMall API.
-  mock-enabled: ${LTA_MOCK_ENABLED:true}
+  # Default: call the real LTA DataMall API (needs LTA_ACCOUNT_KEY).
+  # Set LTA_MOCK_ENABLED=true to use built-in sample data instead (offline demos, no key).
+  mock-enabled: ${LTA_MOCK_ENABLED:false}
   base-url: https://datamall2.mytransport.sg/ltaodataservice
   account-key: ${LTA_ACCOUNT_KEY:}
   poll-interval-ms: 60000

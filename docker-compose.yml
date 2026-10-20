@@ -2,9 +2,9 @@ services:
   backend:
     build: ./backend
     environment:
-      # Default is sample data so this runs with no API key.
-      # For real data: LTA_MOCK_ENABLED=false and LTA_ACCOUNT_KEY=<your key> (e.g. in a .env file).
-      LTA_MOCK_ENABLED: ${LTA_MOCK_ENABLED:-true}
+      # Real LTA DataMall data by default. Put LTA_ACCOUNT_KEY in a .env file (see .env.example).
+      # Set LTA_MOCK_ENABLED=true to use sample data instead.
+      LTA_MOCK_ENABLED: ${LTA_MOCK_ENABLED:-false}
       LTA_ACCOUNT_KEY: ${LTA_ACCOUNT_KEY:-}
     ports:
       - "8080:8080"
