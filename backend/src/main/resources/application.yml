@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sg-transport-disruption-tracker
+  datasource:
+    url: jdbc:h2:mem:tracker;DB_CLOSE_DELAY=-1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+lta:
+  # When true (default) the app uses built-in sample data, so it runs with no API key.
+  # Set LTA_MOCK_ENABLED=false and LTA_ACCOUNT_KEY=<your key> to call the real LTA DataMall API.
+  mock-enabled: ${LTA_MOCK_ENABLED:true}
+  base-url: https://datamall2.mytransport.sg/ltaodataservice
+  account-key: ${LTA_ACCOUNT_KEY:}
+  poll-interval-ms: 60000

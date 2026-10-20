@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    environment:
+      # Default is sample data so this runs with no API key.
+      # For real data: LTA_MOCK_ENABLED=false and LTA_ACCOUNT_KEY=<your key> (e.g. in a .env file).
+      LTA_MOCK_ENABLED: ${LTA_MOCK_ENABLED:-true}
+      LTA_ACCOUNT_KEY: ${LTA_ACCOUNT_KEY:-}
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend

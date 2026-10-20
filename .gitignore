@@ -1,0 +1,9 @@
+node_modules/
+dist/
+target/
+.env
+playwright-report/
+test-results/
+*.log
+.idea/
+.vscode/
